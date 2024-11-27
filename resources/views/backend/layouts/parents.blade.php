@@ -82,10 +82,7 @@
             <!-- Page Content -->
             <div id="page-content">
                 <!-- Navigation info -->
-                <ul id="nav-info" class="clearfix">
-                    <li><a href="index.html"><i class="fa fa-home"></i></a></li>
-                    <li class="active"><a href="">Dashboard</a></li>
-                </ul>
+                @yield('breadcum')
                 <!-- END Navigation info -->
 
                 <!-- Nav Dash -->

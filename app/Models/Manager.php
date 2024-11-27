@@ -26,6 +26,7 @@ class Manager extends Authenticatable
         'name',
         'email',
         'password',
+        'branch_id'
     ];
 
     /**
@@ -47,4 +48,10 @@ class Manager extends Authenticatable
         
         'password' => 'hashed',
     ];
+
+    public function branch(){
+        return $this->hasMany(Branch::class);
+       // return $this->belongsTo(Branch::class);
+}
+
 }

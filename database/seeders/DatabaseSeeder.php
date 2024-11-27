@@ -20,16 +20,33 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        // \App\Models\Admin::create([
-        //     'name' => 'M.M.R Aabir',
-        //     'email' => 'admin@gmail.com',
-        //     'password' =>Hash::make('admin123')
-        // ]);
+        \App\Models\Admin::create([
+            'name' => 'M.M.R Aabir',
+            'email' => 'admin@gmail.com',
+            'password' =>Hash::make('admin123')
+        ]);
 
         \App\Models\Manager::create([
             'name' => 'M.M.R Shisui',
             'email' => 'manager@gmail.com',
-            'password' =>Hash::make('admin123')
+            'password' =>Hash::make('admin123'),
+            'number' =>'01971324922',
+            'branch_id' => '1',
+            
+
         ]);
+
+
+        \App\Models\Branch::create([
+            'branch_name' => 'Savar Courier Point',
+            'branch_email' => 'savar@gmail.com',
+            'number' =>'01971324923',
+            'address' =>'Savar',
+            
+            
+
+        ]);
+
+        
     }
 }

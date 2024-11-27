@@ -21,6 +21,15 @@
 
 @endsection
 
+@section('breadcum')
+
+
+                <!-- Navigation info -->
+                <ul id="nav-info" class="clearfix">
+                    <li><a href="index.html"><i class="fa fa-home"></i></a></li>
+                    <li class="active"><a href="">Dashboard</a></li>
+                </ul>
+
 @section('content')
 <div class="dash-tiles row">
     <!-- Column 1 of Row 1 -->
@@ -156,6 +165,8 @@
                         <img src="{{asset('images/Mountain.jpg')}}" style="width: 100%">
                     </div> -->
 </div>
+
+@endsection
 
 @endsection
 
