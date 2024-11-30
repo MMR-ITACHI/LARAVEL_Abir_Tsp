@@ -44,6 +44,7 @@
 
     <!-- Form Content -->
     <div class="form-box-content">
+
         <div class="form-group">
             <label class="control-label col-md-2" for="val_username">Manager Name *</label>
             <div class="col-md-3">
@@ -109,12 +110,14 @@
             </div>
         </div>
 
+        
+    
         <div class="form-group">
             <label class="control-label col-md-2" for="val_website">Branch Name *</label>
             <div class="col-md-3">
                 <select name="branch_name" id="">
                     <option value="">Select One</option>
-                    branch_name @foreach($branches as $branch)
+                     @foreach($branches as $branch)
 
 
                     <option value="{{$branch->id}}" @selected(old('branch_name')==$branch->id)>{{$branch->branch_name}}</option>
@@ -127,7 +130,6 @@
 
             </div>
         </div>
-    </div>
 
     <div class="form-group">
         <label class="control-label col-md-2" for="val_skill">Status *</label>

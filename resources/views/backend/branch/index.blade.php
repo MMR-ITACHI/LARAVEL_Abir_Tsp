@@ -45,6 +45,7 @@
                                 <th class="cell-small">ID</th>
                                 <th><i class="fa fa-user"></i> Branch Name</th>
                                 <th class="hidden-xs hidden-sm hidden-md"><i class="fa fa-envelope-o"></i>Branch Email</th>
+                                
                                 <th><i class="fa fa-phone" aria-hidden="true"></i> Number</th>
                                 <th><i class="fa fa-location-arrow" aria-hidden="true"></i> Location</th>
                                 <th><i class="fa fa-bolt"></i> Status</th>

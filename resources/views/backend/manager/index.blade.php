@@ -45,7 +45,8 @@
                                 <th><i class="fa fa-user"></i> Manager Name</th>
                                 <th class="hidden-xs hidden-sm hidden-md"><i class="fa fa-envelope-o"></i>Manager Email</th>
                                 <th><i class="fa fa-phone" aria-hidden="true"></i>Manager Phone Number</th>
-                                <th><i class="fa fa-location-arrow" aria-hidden="true"></i> Branch Name</th>
+                                <th><i class="fa fa-truck"></i> Branch Name</th>
+                                
                                 <th><i class="fa fa-bolt"></i>Manager Status</th>
                                 <th><i class="fa fa-picture-o" aria-hidden="true"></i> Photo</th>
                                 <th><i class="fa fa-pencil-square-o" aria-hidden="true"></i>|<i class="fa fa-trash" aria-hidden="true"></i> Action</th>
@@ -60,8 +61,9 @@
                         <td>{{$manager->email}}</td>
                         <td>{{$manager->number}}</td>
                         <td>{{$manager->branch->branch_name}}</td>
+                      
                         <td><span class="label label-warning">{{$manager->status}}</span></td>
-                        <td>{{$manager->photo}}</td>
+                        <td><img src="{{asset($manager->photo)}}" width="100px"></td> 
                         <td>
                             <form action="{{route('manager.destroy', $manager->id)}}" method="post">
                                 @csrf 

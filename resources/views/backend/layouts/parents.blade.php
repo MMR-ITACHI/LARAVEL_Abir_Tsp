@@ -49,6 +49,10 @@
 
         @include('backend.layouts.manager_header')
 
+        @else(Auth()->guard('staff')->check())
+
+        @include('backend.layouts.staff_header')
+
         @endif
           
         <!-- Inner Container -->
@@ -67,6 +71,10 @@
                 @elseif(Auth()->guard('manager')->check())
 
                 @include('backend.layouts.manager_leftbar')
+
+                @elseif(Auth()->guard('staff')->check())
+
+                @include('backend.layouts.staff_leftbar')
 
                 @endif
 

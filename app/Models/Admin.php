@@ -47,4 +47,9 @@ class Admin extends Authenticatable
         
         'password' => 'hashed',
     ];
+
+    public function branch(){
+        return $this->hasMany(Branch::class);
+       // return $this->belongsTo(Branch::class);
+}
 }

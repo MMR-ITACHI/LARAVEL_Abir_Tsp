@@ -8,26 +8,20 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class Manager extends Authenticatable
+class Staff extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
-    protected $guard = 'manager';
+    protected $guard = 'staff';
 
     /**
      * The attributes that are mass assignable.
-     * 
      *
      * @var array<int, string>
-     * 
-     * 
      */
-    
     protected $fillable = [
         'name',
         'email',
         'password',
-        'branch_id'
-        
     ];
 
     /**
@@ -49,10 +43,4 @@ class Manager extends Authenticatable
         
         'password' => 'hashed',
     ];
-
-    public function branch(){
-        //return $this->hasMany(Branch::class);
-        return $this->belongsTo(Branch::class);
-}
-
 }

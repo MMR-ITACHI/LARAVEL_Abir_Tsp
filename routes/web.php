@@ -75,4 +75,26 @@ Route::middleware('auth:manager')->prefix('manager')->group( function () {
 
 });
 
+
+
+
+//Staff
+
+Route::middleware('guest:staff')->prefix('staff')->group( function () {
+
+    Route::get('login', [App\Http\Controllers\Auth\Staff\LoginController::class, 'login'])->name('staff.login');
+    Route::post('login', [App\Http\Controllers\Auth\Staff\LoginController::class, 'check_user']);
+
+    
+
+});
+
+Route::middleware('auth:staff')->prefix('staff')->group( function () {
+
+    Route::post('logout', [App\Http\Controllers\Auth\Staff\LoginController::class, 'logout'])->name('staff.logout');
+
+    Route::view('/dashboard','backend.admin_dashboard');
+    
+
+});
 require __DIR__.'/auth.php';

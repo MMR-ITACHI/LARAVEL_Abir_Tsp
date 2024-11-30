@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('branch_name');
             $table->string('branch_email')->unique();
+            $table->integer('admin_id');
             $table->string('number');
             $table->string('address');
             $table->enum('status',['active', 'inactive'])->default('inactive');

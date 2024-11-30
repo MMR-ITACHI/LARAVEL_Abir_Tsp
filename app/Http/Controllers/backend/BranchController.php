@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin;
 use App\Models\Branch;
+use App\Models\Manager;
 use Illuminate\Http\Request;
 
 class BranchController extends Controller
@@ -23,7 +25,8 @@ class BranchController extends Controller
      */
     public function create()
     {
-        return view('backend.branch.create');
+        $admins = Admin::all();
+        return view('backend.branch.create', compact('admins'));
     }
 
     /**
@@ -37,6 +40,7 @@ class BranchController extends Controller
             [
             'name'=>'required | max:100 | min:5',
             'email'=>'required | email | max:50',
+            'admin_name' => 'required',
             'number'=>'required | min:11',
             'address'=>'required',
             'val_skill'=>'required',
@@ -64,6 +68,7 @@ class BranchController extends Controller
 
         $branch->branch_name =$request->name;
         $branch->branch_email =$request->email;
+        $branch->admin_id =$request->admin_name;
         $branch->number =$request->number;
         $branch->address =$request->address;
         $branch->status =$request->val_skill;

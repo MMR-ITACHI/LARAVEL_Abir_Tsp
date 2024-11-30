@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
 
-        <title>Login Page</title>
+        <title>Admin Login Page</title>
 
         <meta name="description" content="uAdmin is a Professional, Responsive and Flat Admin Template created by pixelcave and published on Themeforest">
         <meta name="author" content="pixelcave">

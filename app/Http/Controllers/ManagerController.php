@@ -86,17 +86,54 @@ class ManagerController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Manager $manager)
     {
-        //
+        $branches =Branch::all() ;
+        return view('backend.manager.edit', compact('manager','branches'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Manager $manager, Request $request)
     {
-        //
+        $request->validate(
+            [
+            'name'=>'required | max:100 | min:5',
+            'email'=>'required | email | max:50', 
+            'number'=>'required | min:11',
+            'branch_name'=>'required',
+            'status'=>'required',
+            'photo'=>' image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]
+            
+            
+            );
+            
+            if ($image = $request->file('photo')) {
+                $destinationPath = 'images/';
+                $postImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+                $image->move($destinationPath, $postImage);
+                $photo = $destinationPath.$postImage;
+            }
+            
+            else{
+            $photo = 'images/nophoto.jpg';
+            }
+                    
+                
+
+
+        $manager->name = $request->name;
+        $manager->email = $request->email;
+        $manager->number = $request->number;
+        $manager->branch_id = $request->branch_name;
+        $manager->status = $request->status;
+        $manager->photo = $photo;
+        
+
+       $manager->save();
+       return redirect()->route('manager.index')->with('msg','Successfully Added');
     }
 
     /**

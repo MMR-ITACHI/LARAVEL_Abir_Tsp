@@ -10,12 +10,19 @@ class Branch extends Model
     use HasFactory;
 
     protected $fillable =[
-        'branch_name','branch_email','number','address'
+        'branch_name','branch_email','admin_id','number','address'
         ];
 
+
+        public function admin(){
+            return $this->belongsTo(Admin::class);
+
+        }
+
+
         public function manager(){
-            return $this->belongsTo(Manager::class);
-          // return $this->hasMany(Manager::class);
+           // return $this->belongsTo(Manager::class);
+           return $this->hasMany(Manager::class);
     }
 
 }

@@ -70,6 +70,28 @@
             </div>
         </div>
 
+
+        
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="val_website">Admin Name *</label>
+            <div class="col-md-3">
+                <select name="admin_name" id="">
+                    <option value="">Select One</option>
+                     @foreach($admins as $admin)
+
+
+                    <option value="{{$admin->id}}" @selected(old('admin_name')==$admin->id)>{{$admin->name}}</option>
+
+                    @endforeach
+                </select>
+                @error('admin_name')
+                <div class="alert alert-danger">{{$message}}</div>
+                @enderror
+
+            </div>
+        </div>
+
         <div class="form-group">
             <label class="control-label col-md-2" for="val_password">Phone Number *</label>
             <div class="col-md-3">

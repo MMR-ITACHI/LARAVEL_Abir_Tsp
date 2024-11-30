@@ -20,31 +20,40 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        \App\Models\Admin::create([
-            'name' => 'M.M.R Aabir',
-            'email' => 'admin@gmail.com',
+        // \App\Models\Admin::create([
+        //     'name' => 'M.M.R Aabir',
+        //     'email' => 'admin@gmail.com',
+        //     'password' =>Hash::make('admin123')
+        // ]);
+
+        // \App\Models\Manager::create([
+        //     'name' => 'M.M.R Shisui',
+        //     'email' => 'manager@gmail.com',
+        //     'password' =>Hash::make('admin123'),
+        //     'branch_id' => '1',
+        //     'number' =>'01971324922',
+            
+            
+
+        // ]);
+
+
+        // \App\Models\Branch::create([
+        //     'branch_name' => 'Savar Courier Point',
+        //     'branch_email' => 'savar@gmail.com',
+        //     'admin_id' => '1',
+        //     'number' =>'01971324923',
+        //     'address' =>'Savar',
+            
+            
+
+        // ]);
+
+
+        \App\Models\Staff::create([
+            'name' => 'M.M.R Itachi',
+            'email' => 'staff@gmail.com',
             'password' =>Hash::make('admin123')
-        ]);
-
-        \App\Models\Manager::create([
-            'name' => 'M.M.R Shisui',
-            'email' => 'manager@gmail.com',
-            'password' =>Hash::make('admin123'),
-            'number' =>'01971324922',
-            'branch_id' => '1',
-            
-
-        ]);
-
-
-        \App\Models\Branch::create([
-            'branch_name' => 'Savar Courier Point',
-            'branch_email' => 'savar@gmail.com',
-            'number' =>'01971324923',
-            'address' =>'Savar',
-            
-            
-
         ]);
 
         
