@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
 
-        <title>Staff Login Page</title>
+        <title>Manager Login Page</title>
 
         <meta name="description" content="uAdmin is a Professional, Responsive and Flat Admin Template created by pixelcave and published on Themeforest">
         <meta name="author" content="pixelcave">
@@ -54,7 +54,7 @@
 
             @endif
             <div id="login-buttons">
-                <h5 class="page-header-sub">Login For Staff</h5>
+                <h5 class="page-header-sub">Login For Employee</h5>
                 <button id="login-btn-facebook" class="btn btn-primary"><i class="fa fa-facebook"></i> Facebook</button>
                 <button id="login-btn-twitter" class="btn btn-info"><i class="fa fa-twitter"></i> Twitter</button>
                 <button id="login-btn-email" class="btn btn-default">or Email <i class="fa fa-envelope"></i></button>
@@ -62,7 +62,7 @@
             <!-- END Login Buttons -->
 
             <!-- Login Form -->
-            <form id="login-form" action="{{route('staff.login')}}" method="post" class="form-horizontal">
+            <form id="login-form" action="{{route('employee.login')}}" method="post" class="form-horizontal">
                 @csrf
                 <div class="form-group">
                     <a href="javascript:void(0)" class="login-back"><i class="fa fa-arrow-left"></i></a>

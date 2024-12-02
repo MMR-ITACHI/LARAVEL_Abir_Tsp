@@ -51,10 +51,12 @@ return [
             'provider' => 'managers',
         ],
 
-        'staff' => [
+        'employee' => [
             'driver' => 'session',
-            'provider' => 'staffs',
+            'provider' => 'employees',
         ],
+
+        
     ],
 
     /*
@@ -96,10 +98,13 @@ return [
             'model' => App\Models\Manager::class,
         ],
 
-        'staffs' => [
+        'employees' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Staff::class,
+            'model' => App\Models\Employee::class,
         ],
+
+        
+        
     ],
 
     /*

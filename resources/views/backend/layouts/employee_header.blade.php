@@ -242,9 +242,9 @@
                         
 
                         <li>
-                        <form action="{{route('staff.logout')}}" method="post">
+                        <form action="{{route('employee.logout')}}" method="post">
                         @csrf
-                        <button class="btn btn-sm btn-danger" type="submit"><i class="fa fa-fw fa-power-off"></i>Staff Log Out</button>
+                        <button class="btn btn-sm btn-danger" type="submit"><i class="fa fa-fw fa-power-off"></i>Employee Log Out</button>
                             </form>
                         </li>
                         

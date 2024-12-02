@@ -105,8 +105,7 @@
             <div class="col-md-3">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-envelope fa-fw"></i></span>
-                    <input type="file" id="val_email"  name="photo" class="form-control">
-                    <img src ="{{asset($branch->photo)}}" width="100px" height="50px"/>
+                    <input type="file" id="val_email" name="photo" class="form-control">
                 </div>
             </div>
         </div>

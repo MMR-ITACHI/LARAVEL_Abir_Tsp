@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth\Staff;
+namespace App\Http\Controllers\Auth\Employee;
 
 use Illuminate\View\View;
 use Illuminate\Http\Request;
@@ -14,7 +14,7 @@ class LoginController extends Controller
 {
     public function login(): View
     {
-        return view('login.admin_login');
+        return view('login.employee_login');
     }
 
     public function check_user(Request $request): RedirectResponse
@@ -24,7 +24,7 @@ class LoginController extends Controller
             'password' => ['required', 'string'],
         ]);
 
-        if(! Auth::guard('admin')->attempt($request->only('email', 'password'), $request->boolean('remember')))
+        if(! Auth::guard('employee')->attempt($request->only('email', 'password'), $request->boolean('remember')))
         {
             throw ValidationException::withMessages([
                 'email' => trans('auth.failed'),
@@ -33,17 +33,17 @@ class LoginController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::ADMIN_DASHBOARD);
+        return redirect()->intended(RouteServiceProvider::EMPLOYEE_DASHBOARD);
     }
 
     public function logout(Request $request): RedirectResponse
     {
-        Auth::guard('admin')->logout();
+        Auth::guard('employee')->logout();
 
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
 
-        return redirect('/admin/login');
+        return redirect('/employee/login');
     }
 }

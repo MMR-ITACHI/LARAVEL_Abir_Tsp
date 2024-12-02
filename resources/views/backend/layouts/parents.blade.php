@@ -49,9 +49,9 @@
 
         @include('backend.layouts.manager_header')
 
-        @else(Auth()->guard('staff')->check())
+        @else(Auth()->guard('employee')->check())
 
-        @include('backend.layouts.staff_header')
+        @include('backend.layouts.employee_header')
 
         @endif
           
@@ -72,9 +72,9 @@
 
                 @include('backend.layouts.manager_leftbar')
 
-                @elseif(Auth()->guard('staff')->check())
+                @else(Auth()->guard('employee')->check())
 
-                @include('backend.layouts.staff_leftbar')
+                @include('backend.layouts.employee_leftbar')
 
                 @endif
 

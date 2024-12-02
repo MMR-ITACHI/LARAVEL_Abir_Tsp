@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\backend\BranchController;
+use App\Http\Controllers\backend\CompanyController;
+use App\Http\Controllers\backend\CostController;
+use App\Http\Controllers\backend\UnitController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -51,6 +54,9 @@ Route::middleware('auth:admin')->prefix('admin')->group( function () {
     Route::view('/dashboard','backend.admin_dashboard');
     Route::resource('/branch', BranchController::class);
     Route::resource('/manager', ManagerController::class);
+    Route::resource('/unit', UnitController::class);
+    Route::resource('/cost', CostController::class);
+    Route::resource('/company', CompanyController::class);
 
 });
 
@@ -71,29 +77,29 @@ Route::middleware('auth:manager')->prefix('manager')->group( function () {
 
     Route::post('logout', [App\Http\Controllers\Auth\Manager\LoginController::class, 'logout'])->name('manager.logout');
 
-    Route::view('/dashboard','backend.manager1_dashboard');
+    Route::view('/dashboard','backend.manager1_dashboard')->name('manager.dashboard');
 
 });
 
 
 
 
-//Staff
+//Employee
 
-Route::middleware('guest:staff')->prefix('staff')->group( function () {
+Route::middleware('guest:employee')->prefix('employee')->group( function () {
 
-    Route::get('login', [App\Http\Controllers\Auth\Staff\LoginController::class, 'login'])->name('staff.login');
-    Route::post('login', [App\Http\Controllers\Auth\Staff\LoginController::class, 'check_user']);
+    Route::get('login', [App\Http\Controllers\Auth\Employee\LoginController::class, 'login'])->name('employee.login');
+    Route::post('login', [App\Http\Controllers\Auth\Employee\LoginController::class, 'check_user']);
 
     
 
 });
 
-Route::middleware('auth:staff')->prefix('staff')->group( function () {
+Route::middleware('auth:employee')->prefix('employee')->group( function () {
 
-    Route::post('logout', [App\Http\Controllers\Auth\Staff\LoginController::class, 'logout'])->name('staff.logout');
+    Route::post('logout', [App\Http\Controllers\Auth\Employee\LoginController::class, 'logout'])->name('employee.logout');
 
-    Route::view('/dashboard','backend.admin_dashboard');
+    Route::view('/dashboard','backend.employee1_dashboard');
     
 
 });

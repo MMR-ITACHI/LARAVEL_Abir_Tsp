@@ -26,12 +26,13 @@
 <ul id="nav-info" class="clearfix">
                         <li><a href="{{ url('admin/dashboard') }}"><i class="fa fa-home"></i></a></li>
                         <li><a href="{{ url('admin/dashboard') }}">Dashboard</a></li>
-                        <li class="active"><a href="{{ route('manager.index') }}">ManagerList</a></li>
+                        <li class="active"><a href="{{ url('admin/cost') }}">Cost List</a></li>
+                        
                     </ul>
 
 @section('content')
 
-<h3 class="page-header page-header-top"> <a href="{{route('manager.create')}}" class="btn btn-success ">Add Manager</a> <br>  Manager List <small>All information about Manager</small></h3>
+<h3 class="page-header page-header-top"> <a href="{{route('cost.create')}}" class="btn btn-success ">Add Cost</a> <br>  Branches List <small>All information about Branches</small></h3>
 
 @if('msg')
 <div class="alert alert-success">{{session('msg')}}</div>
@@ -42,34 +43,29 @@
                         <thead>
                             <tr>
                                 <th class="cell-small">ID</th>
-                                <th><i class="fa fa-user"></i> Manager Name</th>
-                                <th class="hidden-xs hidden-sm hidden-md"><i class="fa fa-envelope-o"></i>Manager Email</th>
-                                <th><i class="fa fa-phone" aria-hidden="true"></i>Manager Phone Number</th>
-                                <th><i class="fa fa-truck"></i> Branch Name</th>
+                                <th><i class="fa fa-archive" aria-hidden="true"></i> Unit Name</th>
+                                <th class="hidden-xs hidden-sm hidden-md"><i class="fa fa-minus-circle" aria-hidden="true"></i>Cost Rate</th>
                                 
-                                <th><i class="fa fa-bolt"></i>Manager Status</th>
-                                <th><i class="fa fa-picture-o" aria-hidden="true"></i> Photo</th>
-                                <th><i class="fa fa-pencil-square-o" aria-hidden="true"></i>|<i class="fa fa-trash" aria-hidden="true"></i> Action</th>
+                                
+                                <th><i class="fa fa-bolt"></i> Status</th>
+                                 <th><i class="fa fa-pencil-square-o" aria-hidden="true"></i>|<i class="fa fa-trash"
+                               aria-hidden="true"></i> Action</th>
                             </tr>
                         </thead>
                         <tbody>
 
-                        @foreach($managers as $manager)
+                        @foreach($costs as $cost)
                         <tr>
                         <td>{{$loop->iteration}}</td>
-                        <td>{{$manager->name}}</td>
-                        <td>{{$manager->email}}</td>
-                        <td>{{$manager->number}}</td>
-                        <td>{{$manager->branch->branch_name}}</td>
-                      
-                        <td><span class="{{$manager->status=='active' ? 'label label-success' : 'label label-warning'  }} ">{{$manager->status}}</span></td>
-                        <td><img src="{{asset($manager->photo)}}" width="100px"></td> 
+                        <td>{{$cost->unit->name}}</td>
+                        <td>{{$cost->cost}}</td>
+                        <td>  <span class="{{($cost->status)=='active'?'label label-success':'label label-danger'}}">  {{$cost->status}}   </span>   </td>                 </span>{{$cost->status}}  </td>
                         <td>
-                            <form action="{{route('manager.destroy', $manager->id)}}" method="post">
+                            <form action="{{route('cost.destroy', $cost->id)}}" method="post">
                                 @csrf 
                                 @method('DELETE')
-                                <a href="" class="btn btn-info">View</a>
-                                <a href="{{route('manager.edit', $manager->id)}}" class="btn btn-success">Edit</a>
+                                
+                                <a href="{{route('cost.edit', $cost->id)}}" class="btn btn-success">Edit</a>
                                <button type="submit" name="submit" class="btn btn-danger">Delete</button>
 
                             

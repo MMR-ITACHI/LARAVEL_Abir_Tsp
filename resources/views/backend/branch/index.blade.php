@@ -62,8 +62,8 @@
                         <td>{{$branch->branch_email}}</td>
                         <td>{{$branch->number}}</td>
                         <td>{{$branch->address}}</td>
-                        <td><span class="label label-warning">{{$branch->status}}</span></td>
-                        <td>{{$branch->photo}}</td>
+                        <td><spa class="{{$branch->status=='active' ? 'label label-success' : 'label label-warning'  }} ">{{$branch->status}}</span></td>
+                        <td> <img src="{{asset($branch->photo)}}" width="100px" >   </td>
                         <td>
                             <form action="{{route('branch.destroy', $branch->id)}}" method="post">
                                 @csrf 

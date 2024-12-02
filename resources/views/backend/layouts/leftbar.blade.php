@@ -13,14 +13,14 @@
                             <a href="{{ route('manager.index') }}"><i class="fa fa-font"></i>All Manager</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-th-list"></i>Unit</a>
+                            <a href="{{ route('unit.index') }}"><i class="fa fa-th-list"></i>Unit</a> 
                             
                         </li>
                         <li>
-                            <a href="page_form_components.html"><i class="fa fa-file-text"></i>Cost</a>
+                            <a href="{{ route('cost.index') }}"><i class="fa fa-file-text"></i>Cost</a>
                         </li>
                         <li>
-                            <a href="page_form_validation.html"><i class="fa fa-exclamation-triangle"></i>Company Name</a>
+                            <a href="{{ route('company.index') }}"><i class="fa fa-exclamation-triangle"></i>Company Name</a>
                         </li>
                                 
                         
