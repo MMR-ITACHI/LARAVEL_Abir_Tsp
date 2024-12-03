@@ -5,7 +5,7 @@
             <a href="{{ url('manager/dashboard') }}" class="active"><i class="fa fa-fire"></i>Dashboard</a>
         </li>
         <li>
-            <a href="page_ui_elements.html"><i class="fa fa-glass"></i>All Staff</a>
+            <a href="{{route('staff.index')}}"><i class="fa fa-glass"></i>All Staff</a>
         </li>
        
         <li>

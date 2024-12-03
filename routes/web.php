@@ -3,6 +3,7 @@
 use App\Http\Controllers\backend\BranchController;
 use App\Http\Controllers\backend\CompanyController;
 use App\Http\Controllers\backend\CostController;
+use App\Http\Controllers\backend\StaffController;
 use App\Http\Controllers\backend\UnitController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\ProfileController;
@@ -78,6 +79,8 @@ Route::middleware('auth:manager')->prefix('manager')->group( function () {
     Route::post('logout', [App\Http\Controllers\Auth\Manager\LoginController::class, 'logout'])->name('manager.logout');
 
     Route::view('/dashboard','backend.manager1_dashboard')->name('manager.dashboard');
+    // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::resource('/staff', StaffController::class);
 
 });
 

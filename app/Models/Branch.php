@@ -25,4 +25,8 @@ class Branch extends Model
            return $this->hasMany(Manager::class);
     }
 
+    public function employee(){
+        return $this->hasMany(Employee::class);
+    }
+
 }
