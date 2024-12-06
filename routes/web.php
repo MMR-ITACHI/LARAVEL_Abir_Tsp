@@ -3,6 +3,7 @@
 use App\Http\Controllers\backend\BranchController;
 use App\Http\Controllers\backend\CompanyController;
 use App\Http\Controllers\backend\CostController;
+ use App\Http\Controllers\backend\CourierDetailsController;
 use App\Http\Controllers\backend\StaffController;
 use App\Http\Controllers\backend\UnitController;
 use App\Http\Controllers\ManagerController;
@@ -103,6 +104,9 @@ Route::middleware('auth:employee')->prefix('employee')->group( function () {
     Route::post('logout', [App\Http\Controllers\Auth\Employee\LoginController::class, 'logout'])->name('employee.logout');
 
     Route::view('/dashboard','backend.employee1_dashboard');
+    Route::resource('/courierdetails', CourierDetailsController::class);
+    
+    Route::post('/cost-fetch/{id}', [CourierDetailsController::class, 'showCost']);
     
 
 });

@@ -64,7 +64,8 @@ class CostController extends Controller
      */
     public function edit(Cost $cost)
     {
-        //
+        $units = Unit::all();
+        return view('backend.cost.edit',compact('cost','units'));
     }
 
     /**
@@ -72,7 +73,23 @@ class CostController extends Controller
      */
     public function update(Request $request, Cost $cost)
     {
-        //
+        $request->validate([
+            'unit_name' =>'required',
+            'cost' =>'required',
+            'status' =>'required'
+
+
+        ]);
+
+        
+
+        $cost->unit_id = $request->unit_name;
+        $cost->cost = $request->cost;
+        $cost->status = $request->status;
+
+
+        $cost->update();
+        return redirect()->route('cost.index')->with('msg','Updated Successfully');
     }
 
     /**

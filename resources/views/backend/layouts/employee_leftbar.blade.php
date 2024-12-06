@@ -1,10 +1,10 @@
 <nav id="primary-nav">
                     <ul>
                         <li>
-                            <a href="index.html" class="active"><i class="fa fa-fire"></i>Dashboard</a>
+                            <a href="{{ url('employee/dashboard') }}" class="active"><i class="fa fa-fire"></i>Dashboard</a>
                         </li>
                         <li>
-                            <a href="page_ui_elements.html"><i class="fa fa-glass"></i>UI Elements</a>
+                            <a href="{{ route('courierdetails.create') }}"><i class="fa fa-glass"></i>Send Courier</a>
                         </li>
                         <li>
                             <a href="page_typography.html"><i class="fa fa-font"></i>Typography</a>

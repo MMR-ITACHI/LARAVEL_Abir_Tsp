@@ -37,7 +37,7 @@
 
 @section('content')
 <!-- Form Validation, Validation Initialization happens at the bottom of the page -->
-<form id="form-validation" action="{{route('cost.update', $cost->id ) }}" method="post" class="form-horizontal form-box remove-margin" enctype="multipart/form-data" >
+<form id="form-validation" action="{{route('manager.update', $manager->id ) }}" method="post" class="form-horizontal form-box remove-margin" enctype="multipart/form-data" >
     @csrf
     @method('PUT')
     <!-- Form Header -->
@@ -45,41 +45,63 @@
 
     <!-- Form Content -->
     <div class="form-box-content">
-
         <div class="form-group">
-            <label class="control-label col-md-2" for="val_website">Unit Name *</label>
-            <div class="col-md-3">
-                <select name="unit_name" id="">
-                    <option value="">Select One</option>
-                    @foreach($units as $unit)
-
-
-<option value="{{$unit->id}}" {{ $unit->id == $cost->unit_id ? 'selected' : '' }} >{{$unit->name}}</option>
-
-@endforeach
-                </select>
-                @error('unit_name')
-                <div class="alert alert-danger">{{$message}}</div>
-                @enderror
-
-
-              
-
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-md-2" for="val_username">Cost Rate *</label>
+            <label class="control-label col-md-2" for="val_username">Manager Name *</label>
             <div class="col-md-3">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
-                    <input type="text" id="val_username" value="{{$cost->cost}}" name="cost" class="form-control">
-                    @error('cost')
-					<div class="alert alert-danger">{{$message}}</div>
-					@enderror
+                    <input type="text" value="{{$manager->name}}" id="val_username" name="name" class="form-control">
                 </div>
             </div>
         </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="val_email">Manager Email *</label>
+            <div class="col-md-3">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-envelope fa-fw"></i></span>
+                    <input type="text" value="{{$manager->email}}" id="val_email" name="email" class="form-control">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="val_password">Phone Number *</label>
+            <div class="col-md-3">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-asterisk fa-fw"></i></span>
+                    <input type="number" value="{{$manager->number}}" id="password" name="number" class="form-control">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="val_website">Branch Name *</label>
+            <div class="col-md-3">
+
+
+                <select name="branch_name" id="">
+                    <option value="">Select One</option>
+                     @foreach($branches as $branch)
+
+
+                    <option value="{{$branch->id}}" @if(old('branch_name')==$branch->id) selected
+                    @elseif($manager->branch_id == $branch->id)
+                     selected
+
+                    @endif >{{$branch->branch_name}}</option>
+
+                    @endforeach
+                </select>
+
+            </div>
+        </div>
+
+
+
+        
 
         <div class="form-group">
             <label class="control-label col-md-2" for="val_skill">Status *</label>
@@ -90,9 +112,18 @@
                     <option value="inactive">INACTIVE</option>
 
                 </select>
-                @error('status')
-				<div class="alert alert-danger">{{$message}}</div>
-				@enderror
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="val_email">Photo *</label>
+            <div class="col-md-3">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-envelope fa-fw"></i></span>
+                    <input type="file" id="val_email" name="photo" class="form-control">
+                    <img src="{{asset($manager->photo)}}" width="50px" alt="">
+                </div>
             </div>
         </div>
 

@@ -110,6 +110,7 @@
                 <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Submit</button>
             </div>
         </div>
+        
     </div>
     <!-- END Form Content -->
 </form>

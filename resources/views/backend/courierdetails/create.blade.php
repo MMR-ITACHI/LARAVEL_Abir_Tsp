@@ -1,0 +1,464 @@
+@extends('backend.layouts.parents')
+
+@section('css')
+
+<!-- Stylesheets -->
+<!-- Bootstrap is included in its original form, unaltered -->
+<link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+
+<!-- Related styles of various javascript plugins -->
+<link rel="stylesheet" href="{{ asset('css/plugins.css') }}">
+
+<!-- The main stylesheet of this template. All Bootstrap overwrites are defined in here -->
+<link rel="stylesheet" href="{{ asset('css/main.css') }}">
+
+<!-- Load a specific file here from css/themes/ folder to alter the default theme of the template -->
+
+<!-- The themes stylesheet of this template (for using specific theme color in individual elements - must included last) -->
+<link rel="stylesheet" href="{{ asset('css/themes.css') }}">
+<!-- END Stylesheets -->
+
+<!-- Modernizr (browser feature detection library) & Respond.js (Enable responsive CSS code on browsers that don't support it, eg IE8) -->
+<script src="{{ asset('js/vendor/modernizr-respond.min.js') }}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#total").click(function() {
+            /*var quantity = document.getElementById("quantity").value;*/
+            var cost = $("#unitprice").val();
+            var qty = $("#quantity").val();
+
+            var amt = (cost * qty);
+
+            $('#total').val(amt);
+            $("#subtotal").val(amt);
+            $("#amt").val(amt);
+
+        });
+
+    });
+</script>
+
+@endsection
+
+
+@section('breadcum')
+
+<!-- Navigation info -->
+<ul id="nav-info" class="clearfix">
+    <li><a href="index.html"><i class="fa fa-home"></i></a></li>
+    <li><a href="{{ url('admin/dashboard') }}">Dasboard</a></li>
+    <li class="active"><a href="">Add</a></li>
+</ul>
+<!-- END Navigation info -->
+@endsection
+
+@section('content')
+<!-- Form Validation, Validation Initialization happens at the bottom of the page -->
+<form id="form-validation" action="{{route('courierdetails.store')}}" method="post" class="form-horizontal form-box remove-margin" enctype="multipart/form-data">
+    @csrf
+    <!-- Form Header -->
+    <h4 class="form-box-header">Courier Details </h4>
+    @if('msg')
+                        <div class="alert alert-success">{{session('msg')}}</div>
+                        @endif
+
+    <!-- Form Content -->
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Sender information</h4>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label>Sender Type</label>
+                        <select name="sender_type" class="form-select" id="sender_type">
+                            <option value="">Select Type</option>
+                            <option value="Individual">Individual</option>
+                            <option value="Company">Company</option>
+                        </select>
+                        @error('sender_type')
+                <div class="alert alert-danger">{{$message}}</div>
+                @enderror
+                        
+                    </div>
+
+
+
+
+                    <div class="mb-3">
+                        <label>Company Name</label>
+                        <input type="text" class="form-control" name="company_name" id="sender_name" placeholder="Company name">
+                        @error('company_name')
+                <div class="alert alert-danger">{{$message}}</div>
+                @enderror
+                    </div>
+
+
+
+
+                    <div class="mb-3">
+                        <label>Sender Name</label>
+                        <input type="text" class="form-control" name="sender_name" id="sender_name" placeholder="Sender name">
+                        @error('sender_name')
+                <div class="alert alert-danger">{{$message}}</div>
+                @enderror
+                    </div>
+
+
+                    <div class="mb-3">
+                        <label>Sender Email</label>
+                        <input type="text" class="form-control" name="sender_email" id="sender_email" placeholder="Sender email">
+                        @error('sender_email')
+                <div class="alert alert-danger">{{$message}}</div>
+                @enderror
+                    </div>
+
+
+                    <div class="mb-3">
+                        <label>Sender Phone Number</label>
+                        <input type="text" class="form-control" name="sender_phone_number" id="sender_phone_number" placeholder="Sender phone number">
+                        @error('sender_phone_number')
+                <div class="alert alert-danger">{{$message}}</div>
+                @enderror
+                    </div>
+
+
+                    <div class="mb-3">
+                        <label>Sender Address</label>
+                        <textarea class="form-control" name="sender_address" id="sender_address" placeholder="Sender address"></textarea>
+                        @error('sender_address')
+                <div class="alert alert-danger">{{$message}}</div>
+                @enderror
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Receiver information</h4>
+                </div>
+
+                <div class="card-body">
+
+                    <div class="mb-3">
+                        <label>Receiver Name</label>
+                        <input type="text" class="form-control" name="receiver_name" placeholder="Receiver name">
+                        @error('receiver_name')
+                <div class="alert alert-danger">{{$message}}</div>
+                @enderror
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Receiver Email</label>
+                        <input type="text" class="form-control" name="receiver_email" placeholder="Receiver email">
+                        @error('receiver_email')
+                <div class="alert alert-danger">{{$message}}</div>
+                @enderror
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Receiver Phone Number</label>
+                        <input type="text" class="form-control" name="receiver_phone_number" placeholder="Receiver phone number">
+                        @error('receiver_phone_number')
+                <div class="alert alert-danger">{{$message}}</div>
+                @enderror
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Receiver Address</label>
+                        <textarea class="form-control" name="receiver_address" placeholder="Receiver address"></textarea>
+                        @error('receiver_address')
+                <div class="alert alert-danger">{{$message}}</div>
+                @enderror
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Courier Status</label>
+                        <select name="status" class="form-select" id="status">
+                            <option value="">Select Type</option>
+                            <option value="Processing">Processing</option>
+                            <option value="On the way">On the way</option>
+                            <option value="Out of Delivery">Out of Delivery</option>
+                            <option value="Delivered">Delivered</option>
+                        </select>
+                        @error('courier_status')
+                <div class="alert alert-danger">{{$message}}</div>
+                @enderror
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Tracking ID</label>
+                        <input type="text" class="form-control" name="tracking"  placeholder="tracking" >
+                        @error('tracking')
+                <div class="alert alert-danger">{{$message}}</div>
+                @enderror
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Item Details</h4>
+                </div>
+
+                <div class="card-body" id="item_list">
+                    <div class="row">
+
+                        <div class="col-lg-4 mb-3">
+                            <label>Item Description</label>
+                            <textarea class="form-control" rows="1" name="item_description" placeholder="Item description"></textarea>
+                        </div>
+
+                        <div class="col-lg-8">
+                            <div class="row">
+
+                                <div class="col-lg-4 col-md-6 col-12 mb-3">
+                                    <label>Unit Name</label>
+                                    <select name="unit_name" class="form-select select_unit_id">
+                                        <option value="">Select Unit</option>
+                                        @foreach ($units as $unit)
+                                        <option value="{{ $unit->id }}">{{ $unit->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('unit_name')
+                <div class="alert alert-danger">{{$message}}</div>
+                @enderror
+                                </div>
+
+                                <div class="col-lg-2 col-md-6 col-12 mb-3">
+                                    <label>Cost</label>
+                                    <input type="text" class="form-control get_cost_rate" id="unitprice" name="unit_price" placeholder="Cost">
+                                    @error('unit_price')
+                <div class="alert alert-danger">{{$message}}</div>
+                @enderror
+                                </div>
+
+                                <div class="col-lg-2 col-md-6 col-12 mb-3">
+                                    <label>Quantity</label>
+                                    <input type="number" class="form-control get_item_quantity" id="quantity" name="quantity" placeholder="Quantity">
+                                    @error('quantity')
+                <div class="alert alert-danger">{{$message}}</div>
+                @enderror
+                                </div>
+
+                                <div class="col-lg-3 col-md-6 col-12 mb-3">
+                                    <label>Total Cost</label>
+                                    <input type="number" class="form-control total_cost_rate" id="total" name="total" style="cursor: pointer;" readonly placeholder="Total cost">
+                                    @error('total')
+                <div class="alert alert-danger">{{$message}}</div>
+                @enderror
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <span class="text-danger" id="validation-errors"></span>
+                <div class="card-footer">
+                    <div class="row">
+
+                        <div class="col-lg-8">
+                            <label>Special Comment</label>
+                            <textarea name="special_comment" rows="1" class="form-control" placeholder="Special comment"></textarea>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <label>Grand Total</label>
+                            <input type="number"  class="form-control" name="subtotal" id="subtotal" style="cursor: pointer;" readonly placeholder="Grand total">
+                            @error('grand_total')
+                <div class="alert alert-danger">{{$message}}</div>
+                @enderror
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Payment Details</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row justify-content-end">
+                        <div class="col-lg-3 mb-3">
+                            <label>Payment Type</label>
+                            <select name="payment_type" class="form-select" id="select_payment_type">
+                                <option value="">Select Type</option>
+                                <option value="Sender Payment">Sender Payment</option>
+                                <option value="Receiver Payment">Receiver Payment</option>
+                            </select>
+                            @error('payment_type')
+                <div class="alert alert-danger">{{$message}}</div>
+                @enderror
+                           
+                        </div>
+                        <div class="col-lg-3 mb-3">
+                            <label>Payment Amount</label>
+                            <input type="number" class="form-control" name="amt" id="amt" style="cursor: pointer;" placeholder="Payment amount" readonly>
+                            @error('amt')
+                <div class="alert alert-danger">{{$message}}</div>
+                @enderror
+                           
+                        </div>
+                        <div class="col-lg-2 mb-3">
+                            <button type="submit" class="btn btn-success mt-4 px-5"><i class="bi bi-cursor-fill"></i> Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- END Form Content -->
+</form>
+<!-- END Form Validation -->
+
+@endsection
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+    !window.jQuery && document.write(decodeURI('%3Cscript src="js/vendor/jquery-1.11.1.min.js"%3E%3C/script%3E'));
+</script>
+
+@section('js')
+
+<!-- Bootstrap.js -->
+<script src="{{ asset('js/vendor/bootstrap.min.js') }}"></script>
+
+<!-- Jquery plugins and custom javascript code -->
+<script src="{{ asset('js/plugins.js') }}"></script>
+<script src="{{ asset('js/main.js') }}"></script>
+
+@endsection
+
+
+@section('javascript')
+<!-- Javascript code only for this page -->
+<script>
+    $(function() {
+
+        /* For advanced usage and examples please check out
+         *  Jquery Validation   -> https://github.com/jzaefferer/jquery-validation
+         */
+
+        /* Initialize Form Validation */
+        $('#form-validation').validate({
+            errorClass: 'help-block',
+            errorElement: 'span',
+            errorPlacement: function(error, e) {
+                e.parents('.form-group > div').append(error);
+            },
+            highlight: function(e) {
+                $(e).closest('.form-group').removeClass('has-success has-error').addClass('has-error');
+                $(e).closest('.help-block').remove();
+            },
+            success: function(e) {
+                // You can use the following if you would like to highlight with green color the input after successful validation!
+                e.closest('.form-group').removeClass('has-success has-error'); // e.closest('.form-group').removeClass('has-success has-error').addClass('has-success');
+                e.closest('.help-block').remove();
+                e.closest('.help-inline').remove();
+            },
+            rules: {
+                val_username: {
+                    required: true,
+                    minlength: 2
+                },
+                val_password: {
+                    required: true,
+                    minlength: 5
+                },
+                val_confirm_password: {
+                    required: true,
+                    minlength: 5,
+                    equalTo: '#val_password'
+                },
+                val_email: {
+                    required: true,
+                    email: true
+                },
+                val_website: {
+                    required: true,
+                    url: true
+                },
+                val_date: {
+                    required: true,
+                    date: true
+                },
+                val_range: {
+                    required: true,
+                    range: [1, 100]
+                },
+                val_number: {
+                    required: true,
+                    number: true
+                },
+                val_digits: {
+                    required: true,
+                    digits: true
+                },
+                val_skill: {
+                    required: true
+                },
+                val_credit_card: {
+                    required: true,
+                    creditcard: true
+                },
+                val_terms: {
+                    required: true
+                }
+            },
+            messages: {
+                val_username: {
+                    required: 'Please enter a username',
+                    minlength: 'Your username must consist of at least 2 characters'
+                },
+                val_password: {
+                    required: 'Please provide a password',
+                    minlength: 'Your password must be at least 5 characters long'
+                },
+                val_confirm_password: {
+                    required: 'Please provide a password',
+                    minlength: 'Your password must be at least 5 characters long',
+                    equalTo: 'Please enter the same password as above'
+                },
+                val_email: 'Please enter a valid email address',
+                val_website: 'Please enter your website!',
+                val_date: 'Please select a date!',
+                val_range: 'Please enter a number between 1 and 100!',
+                val_number: 'Please enter a number!',
+                val_digits: 'Please enter digits!',
+                val_credit_card: 'Please enter a valid credit card!',
+                val_skill: 'Please select a skill!',
+                val_terms: 'You must agree to the terms!'
+            }
+        });
+    });
+</script>
+
+@endsection

@@ -17,4 +17,6 @@ class Cost extends Model
     public function unit(){
         return $this->belongsTo(Unit::class);
     }
+
+    
 }
