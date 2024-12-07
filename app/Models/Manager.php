@@ -53,6 +53,11 @@ class Manager extends Authenticatable
     public function branch(){
         //return $this->hasMany(Branch::class);
         return $this->belongsTo(Branch::class);
+
+}
+
+     public function employee(){
+      return $this->hasMany(Employee::class);
 }
 
 }

@@ -23,7 +23,7 @@ class LoginController extends Controller
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255'],
             'password' => ['required', 'string'],
         ]);
-
+//dd($request);
         if(! Auth::guard('manager')->attempt($request->only('email', 'password'), $request->boolean('remember')))
         {
             throw ValidationException::withMessages([

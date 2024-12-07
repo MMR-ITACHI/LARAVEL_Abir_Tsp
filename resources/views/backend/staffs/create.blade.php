@@ -113,18 +113,41 @@
         
     
         <div class="form-group">
-            <label class="control-label col-md-2" for="val_website">Branch Name *</label>
+    <label class="control-label col-md-2" for="val_website">Branch Name *</label>
+    <div class="col-md-3">
+        <select name="branch_name" id="">
+            <option value="">Select One</option>
+            @foreach($branches as $branch)
+                <option value="{{ $branch->id }}" {{ Auth::user()->branch_id == $branch->id ? 'selected' : '' }}>
+                    {{ $branch->branch_name }}
+                </option>
+            @endforeach
+        </select>
+        @error('branch_name')
+            <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+    </div>
+</div>
+
+
+
+
+        
+
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="val_website">Manager Name *</label>
             <div class="col-md-3">
-                <select name="branch_name" id="">
+                <select name="manager_name" id="">
                     <option value="">Select One</option>
-                     @foreach($branches as $branch)
+                     @foreach($managers as $manager)
 
 
-                    <option value="{{$branch->id}}" @selected(old('branch_name')==$branch->id)>{{$branch->branch_name}}</option>
+                    <option value="{{$manager->id}}" {{Auth::user()->name == $manager->name ? 'selected' : ''}}  >{{ $manager->name }}</option>
 
                     @endforeach
                 </select>
-                @error('branch_name')
+                @error('manager_name')
                 <div class="alert alert-danger">{{$message}}</div>
                 @enderror
 

@@ -5,7 +5,9 @@ namespace App\Http\Controllers\backend;
 use App\Http\Controllers\Controller;
 use App\Models\Branch;
 use App\Models\Employee;
+use App\Models\Manager;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class StaffController extends Controller
 {
@@ -14,8 +16,14 @@ class StaffController extends Controller
      */
     public function index()
     {
-        $staffs = Employee::all();
-        return view('backend.staffs.index',compact('staffs'));
+        
+            $managerId = Auth::id(); 
+         $staffs = Employee::where('manager_id', $managerId)->get();
+        
+
+        
+        
+         return view('backend.staffs.index',compact('staffs'));
     }
 
     /**
@@ -23,8 +31,10 @@ class StaffController extends Controller
      */
     public function create()
     {
-        $branches = Branch::all();
-        return view('backend.staffs.create',compact('branches'));
+       
+         $branches = Branch::all();
+         $managers = Manager::all();
+         return view('backend.staffs.create',compact('branches','managers'));
     }
 
     /**
@@ -38,6 +48,7 @@ class StaffController extends Controller
 'number'=>'required',
 'password'=>'required | min:8 | confirmed',
 'branch_name'=>'required',
+'manager_name'=>'required',
 'status'=>'required',
         ]);
 
@@ -48,6 +59,7 @@ class StaffController extends Controller
     $employee->password =bcrypt($request->password);
     $employee->phone = $request->number;
     $employee->branch_id = $request->branch_name;
+    $employee->manager_id = $request->manager_name;
     $employee->status = $request->status;
 
     $employee->save();

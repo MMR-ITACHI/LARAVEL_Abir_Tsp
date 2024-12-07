@@ -51,5 +51,9 @@ class Employee extends Authenticatable
     public function branch(){
         return $this->belongsTo(Branch::class);
     }
+
+    public function manager(){
+        return $this->belongsTo(Manager::class);
+    }
     
 }

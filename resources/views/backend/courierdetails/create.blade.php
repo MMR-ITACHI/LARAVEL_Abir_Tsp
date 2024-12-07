@@ -183,7 +183,7 @@
                         <label>Courier Status</label>
                         <select name="status" class="form-select" id="status">
                             <option value="">Select Type</option>
-                            <option value="Processing">Processing</option>
+                            <option value="Processing" selected>Processing</option>
                             <option value="On the way">On the way</option>
                             <option value="Out of Delivery">Out of Delivery</option>
                             <option value="Delivered">Delivered</option>

@@ -139,8 +139,9 @@ class ManagerController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Manager $manager)
     {
-        //
+        $manager->delete();
+        return redirect()->route('manager.index')->with('msg','Successfully Deleted');
     }
 }

@@ -101,6 +101,30 @@
 
 
 
+        <div class="form-group">
+            <label class="control-label col-md-2" for="val_website">Manager Name *</label>
+            <div class="col-md-3">
+
+
+                <select name="manager_name" id="">
+                    <option value="">Select One</option>
+                     @foreach($managers as $manager)
+
+
+                    <option value="{{$manager->id}}" @if(old('manager_name')==$manager->id) selected
+                    @elseif($staff->manager_id == $manager->id)
+                     selected
+
+                    @endif >{{$manager->name}}</option>
+
+                    @endforeach
+                </select>
+
+            </div>
+        </div>
+
+
+
         
 
         <div class="form-group">
