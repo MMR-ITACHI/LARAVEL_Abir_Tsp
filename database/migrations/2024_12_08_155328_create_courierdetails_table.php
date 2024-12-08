@@ -23,6 +23,9 @@ return new class extends Migration
             $table->string('receiver_email',50);
             $table->string('receiver_phone',50);
             $table->string('receiver_address',50);
+            $table->integer('receiver_branch_id');
+            $table->integer('sender_agent_id');
+            $table->integer('manager_id');
             $table->enum('status',['Processing','On the way','Out of Delivery','Delivered'])->default('Processing');
             $table->string('item_description',250);
             $table->string('tracking_id');

@@ -9,5 +9,11 @@ class Courierdetail extends Model
 {
     use HasFactory;
 
-    
+    public function branch(){
+        return $this->belongsTo(Branch::class);
+    }
+
+    public function employee(){
+        return $this->belongsTo(Employee::class);
+    }
 }

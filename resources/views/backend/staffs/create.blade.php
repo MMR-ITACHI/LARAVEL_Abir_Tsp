@@ -110,29 +110,29 @@
             </div>
         </div>
 
-        
-    
+
+
         <div class="form-group">
-    <label class="control-label col-md-2" for="val_website">Branch Name *</label>
-    <div class="col-md-3">
-        <select name="branch_name" id="">
-            <option value="">Select One</option>
-            @foreach($branches as $branch)
-                <option value="{{ $branch->id }}" {{ Auth::user()->branch_id == $branch->id ? 'selected' : '' }}>
-                    {{ $branch->branch_name }}
-                </option>
-            @endforeach
-        </select>
-        @error('branch_name')
-            <div class="alert alert-danger">{{ $message }}</div>
-        @enderror
-    </div>
-</div>
+            <label class="control-label col-md-2" for="val_website">Branch Name *</label>
+            <div class="col-md-3">
+                <select name="branch_name" id="">
+                    <option value="">Select One</option>
+                    @foreach($branches as $branch)
+                    <option value="{{ $branch->id }}" {{ Auth::user()->branch_id == $branch->id ? 'selected' : '' }}>
+                        {{ $branch->branch_name }}
+                    </option>
+                    @endforeach
+                </select>
+                @error('branch_name')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </div>
+        </div>
 
 
 
 
-        
+
 
 
         <div class="form-group">
@@ -140,10 +140,10 @@
             <div class="col-md-3">
                 <select name="manager_name" id="">
                     <option value="">Select One</option>
-                     @foreach($managers as $manager)
+                    @foreach($managers as $manager)
 
 
-                    <option value="{{$manager->id}}" {{Auth::user()->name == $manager->name ? 'selected' : ''}}  >{{ $manager->name }}</option>
+                    <option value="{{$manager->id}}" {{Auth::user()->name == $manager->name ? 'selected' : ''}}>{{ $manager->name }}</option>
 
                     @endforeach
                 </select>
@@ -154,32 +154,32 @@
             </div>
         </div>
 
-    <div class="form-group">
-        <label class="control-label col-md-2" for="val_skill">Status *</label>
-        <div class="col-md-2">
-            <select id="val_skill" name="status" class="form-control">
-                <option value="">Please select</option>
-                <option value="active">ACTIVE</option>
-                <option value="inactive">INACTIVE</option>
+        <div class="form-group">
+            <label class="control-label col-md-2" for="val_skill">Status *</label>
+            <div class="col-md-2">
+                <select id="val_skill" name="status" class="form-control">
+                    <option value="">Please select</option>
+                    <option value="active">ACTIVE</option>
+                    <option value="inactive">INACTIVE</option>
 
-            </select>
-            @error('status')
-            <div class="alert alert-danger">{{$message}}</div>
-            @enderror
+                </select>
+                @error('status')
+                <div class="alert alert-danger">{{$message}}</div>
+                @enderror
+            </div>
         </div>
-    </div>
 
 
 
 
 
 
-    <div class="form-group form-actions">
-        <div class="col-md-10 col-md-offset-2">
-            <button type="reset" class="btn btn-danger"><i class="fa fa-repeat"></i> Reset</button>
-            <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Submit</button>
+        <div class="form-group form-actions">
+            <div class="col-md-10 col-md-offset-2">
+                <button type="reset" class="btn btn-danger"><i class="fa fa-repeat"></i> Reset</button>
+                <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Submit</button>
+            </div>
         </div>
-    </div>
     </div>
     <!-- END Form Content -->
 </form>

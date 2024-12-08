@@ -82,6 +82,7 @@ Route::middleware('auth:manager')->prefix('manager')->group( function () {
     Route::view('/dashboard','backend.manager1_dashboard')->name('manager.dashboard');
     // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::resource('/staff', StaffController::class);
+    
 
 });
 
@@ -107,6 +108,7 @@ Route::middleware('auth:employee')->prefix('employee')->group( function () {
     Route::resource('/courierdetails', CourierDetailsController::class);
     
     Route::post('/cost-fetch/{id}', [CourierDetailsController::class, 'showCost']);
+    Route::get('/codex', [CourierDetailsController::class, 'codex']);
     
 
 });

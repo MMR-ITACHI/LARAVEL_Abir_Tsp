@@ -62,8 +62,8 @@
     <!-- Form Header -->
     <h4 class="form-box-header">Courier Details </h4>
     @if('msg')
-                        <div class="alert alert-success">{{session('msg')}}</div>
-                        @endif
+    <div class="alert alert-success">{{session('msg')}}</div>
+    @endif
 
     <!-- Form Content -->
     <div class="row">
@@ -81,9 +81,9 @@
                             <option value="Company">Company</option>
                         </select>
                         @error('sender_type')
-                <div class="alert alert-danger">{{$message}}</div>
-                @enderror
-                        
+                        <div class="alert alert-danger">{{$message}}</div>
+                        @enderror
+
                     </div>
 
 
@@ -93,8 +93,8 @@
                         <label>Company Name</label>
                         <input type="text" class="form-control" name="company_name" id="sender_name" placeholder="Company name">
                         @error('company_name')
-                <div class="alert alert-danger">{{$message}}</div>
-                @enderror
+                        <div class="alert alert-danger">{{$message}}</div>
+                        @enderror
                     </div>
 
 
@@ -104,8 +104,8 @@
                         <label>Sender Name</label>
                         <input type="text" class="form-control" name="sender_name" id="sender_name" placeholder="Sender name">
                         @error('sender_name')
-                <div class="alert alert-danger">{{$message}}</div>
-                @enderror
+                        <div class="alert alert-danger">{{$message}}</div>
+                        @enderror
                     </div>
 
 
@@ -113,8 +113,8 @@
                         <label>Sender Email</label>
                         <input type="text" class="form-control" name="sender_email" id="sender_email" placeholder="Sender email">
                         @error('sender_email')
-                <div class="alert alert-danger">{{$message}}</div>
-                @enderror
+                        <div class="alert alert-danger">{{$message}}</div>
+                        @enderror
                     </div>
 
 
@@ -122,8 +122,8 @@
                         <label>Sender Phone Number</label>
                         <input type="text" class="form-control" name="sender_phone_number" id="sender_phone_number" placeholder="Sender phone number">
                         @error('sender_phone_number')
-                <div class="alert alert-danger">{{$message}}</div>
-                @enderror
+                        <div class="alert alert-danger">{{$message}}</div>
+                        @enderror
                     </div>
 
 
@@ -131,8 +131,8 @@
                         <label>Sender Address</label>
                         <textarea class="form-control" name="sender_address" id="sender_address" placeholder="Sender address"></textarea>
                         @error('sender_address')
-                <div class="alert alert-danger">{{$message}}</div>
-                @enderror
+                        <div class="alert alert-danger">{{$message}}</div>
+                        @enderror
                     </div>
 
 
@@ -151,55 +151,49 @@
                         <label>Receiver Name</label>
                         <input type="text" class="form-control" name="receiver_name" placeholder="Receiver name">
                         @error('receiver_name')
-                <div class="alert alert-danger">{{$message}}</div>
-                @enderror
+                        <div class="alert alert-danger">{{$message}}</div>
+                        @enderror
                     </div>
 
                     <div class="mb-3">
                         <label>Receiver Email</label>
                         <input type="text" class="form-control" name="receiver_email" placeholder="Receiver email">
                         @error('receiver_email')
-                <div class="alert alert-danger">{{$message}}</div>
-                @enderror
+                        <div class="alert alert-danger">{{$message}}</div>
+                        @enderror
                     </div>
 
                     <div class="mb-3">
                         <label>Receiver Phone Number</label>
                         <input type="text" class="form-control" name="receiver_phone_number" placeholder="Receiver phone number">
                         @error('receiver_phone_number')
-                <div class="alert alert-danger">{{$message}}</div>
-                @enderror
+                        <div class="alert alert-danger">{{$message}}</div>
+                        @enderror
                     </div>
 
                     <div class="mb-3">
                         <label>Receiver Address</label>
                         <textarea class="form-control" name="receiver_address" placeholder="Receiver address"></textarea>
                         @error('receiver_address')
-                <div class="alert alert-danger">{{$message}}</div>
-                @enderror
+                        <div class="alert alert-danger">{{$message}}</div>
+                        @enderror
                     </div>
 
                     <div class="mb-3">
                         <label>Courier Status</label>
                         <select name="status" class="form-select" id="status">
-                            <option value="">Select Type</option>
+                            <option>Select Type</option>
                             <option value="Processing" selected>Processing</option>
                             <option value="On the way">On the way</option>
                             <option value="Out of Delivery">Out of Delivery</option>
                             <option value="Delivered">Delivered</option>
                         </select>
                         @error('courier_status')
-                <div class="alert alert-danger">{{$message}}</div>
-                @enderror
+                        <div class="alert alert-danger">{{$message}}</div>
+                        @enderror
                     </div>
 
-                    <div class="mb-3">
-                        <label>Tracking ID</label>
-                        <input type="text" class="form-control" name="tracking"  placeholder="tracking" >
-                        @error('tracking')
-                <div class="alert alert-danger">{{$message}}</div>
-                @enderror
-                    </div>
+                   
 
 
 
@@ -238,32 +232,32 @@
                                         @endforeach
                                     </select>
                                     @error('unit_name')
-                <div class="alert alert-danger">{{$message}}</div>
-                @enderror
+                                    <div class="alert alert-danger">{{$message}}</div>
+                                    @enderror
                                 </div>
 
                                 <div class="col-lg-2 col-md-6 col-12 mb-3">
                                     <label>Cost</label>
                                     <input type="text" class="form-control get_cost_rate" id="unitprice" name="unit_price" placeholder="Cost">
                                     @error('unit_price')
-                <div class="alert alert-danger">{{$message}}</div>
-                @enderror
+                                    <div class="alert alert-danger">{{$message}}</div>
+                                    @enderror
                                 </div>
 
                                 <div class="col-lg-2 col-md-6 col-12 mb-3">
                                     <label>Quantity</label>
                                     <input type="number" class="form-control get_item_quantity" id="quantity" name="quantity" placeholder="Quantity">
                                     @error('quantity')
-                <div class="alert alert-danger">{{$message}}</div>
-                @enderror
+                                    <div class="alert alert-danger">{{$message}}</div>
+                                    @enderror
                                 </div>
 
                                 <div class="col-lg-3 col-md-6 col-12 mb-3">
                                     <label>Total Cost</label>
                                     <input type="number" class="form-control total_cost_rate" id="total" name="total" style="cursor: pointer;" readonly placeholder="Total cost">
                                     @error('total')
-                <div class="alert alert-danger">{{$message}}</div>
-                @enderror
+                                    <div class="alert alert-danger">{{$message}}</div>
+                                    @enderror
                                 </div>
 
                             </div>
@@ -282,10 +276,10 @@
 
                         <div class="col-lg-4">
                             <label>Grand Total</label>
-                            <input type="number"  class="form-control" name="subtotal" id="subtotal" style="cursor: pointer;" readonly placeholder="Grand total">
+                            <input type="number" class="form-control" name="subtotal" id="subtotal" style="cursor: pointer;" readonly placeholder="Grand total">
                             @error('grand_total')
-                <div class="alert alert-danger">{{$message}}</div>
-                @enderror
+                            <div class="alert alert-danger">{{$message}}</div>
+                            @enderror
                         </div>
 
                     </div>
@@ -311,17 +305,17 @@
                                 <option value="Receiver Payment">Receiver Payment</option>
                             </select>
                             @error('payment_type')
-                <div class="alert alert-danger">{{$message}}</div>
-                @enderror
-                           
+                            <div class="alert alert-danger">{{$message}}</div>
+                            @enderror
+
                         </div>
                         <div class="col-lg-3 mb-3">
                             <label>Payment Amount</label>
                             <input type="number" class="form-control" name="amt" id="amt" style="cursor: pointer;" placeholder="Payment amount" readonly>
                             @error('amt')
-                <div class="alert alert-danger">{{$message}}</div>
-                @enderror
-                           
+                            <div class="alert alert-danger">{{$message}}</div>
+                            @enderror
+
                         </div>
                         <div class="col-lg-2 mb-3">
                             <button type="submit" class="btn btn-success mt-4 px-5"><i class="bi bi-cursor-fill"></i> Submit</button>

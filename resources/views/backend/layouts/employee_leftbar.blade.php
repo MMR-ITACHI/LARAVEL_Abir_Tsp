@@ -3,12 +3,23 @@
                         <li>
                             <a href="{{ url('employee/dashboard') }}" class="active"><i class="fa fa-fire"></i>Dashboard</a>
                         </li>
+
                         <li>
-                            <a href="{{ route('courierdetails.create') }}"><i class="fa fa-glass"></i>Send Courier</a>
+                        <a href="#"><i class="fa fa-th-list" class="active"></i>Send Courier Details</a>
+                            <ul>
+                              <li>
+                                 <a href="{{ route('courierdetails.create') }}"  class="active"><i class="fa fa-glass"></i>Send Courier</a>
+                              </li>
+
+                            </ul>
+
                         </li>
+
                         <li>
-                            <a href="page_typography.html"><i class="fa fa-font"></i>Typography</a>
+                            <a href="{{route('courierdetails.index')}}" class="active"><i class="fa fa-fire"></i>Courier List</a>
                         </li>
+
+                        
                         <li>
                             <a href="#"><i class="fa fa-th-list"></i>Forms</a>
                             <ul>

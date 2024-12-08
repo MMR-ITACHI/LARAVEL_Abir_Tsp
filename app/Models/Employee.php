@@ -55,5 +55,9 @@ class Employee extends Authenticatable
     public function manager(){
         return $this->belongsTo(Manager::class);
     }
+
+    public function courierdetail(){
+        return $this->hasMany(Courierdetail::class);
+    }
     
 }

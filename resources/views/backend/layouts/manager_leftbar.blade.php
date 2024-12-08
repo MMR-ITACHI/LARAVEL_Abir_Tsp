@@ -12,7 +12,7 @@
             <a href="#"><i class="fa fa-th-list"></i>Send Courier List</a>
             <ul>
                 <li>
-                    <a href="page_form_components.html"><i class="fa fa-file-text"></i>Processing</a>
+                    <a href="{{ url('employee/codex') }}"><i class="fa fa-file-text"></i>Processing</a>
                 </li>
                 <li>
                     <a href="page_form_validation.html"><i class="fa fa-exclamation-triangle"></i>Delivered</a>
