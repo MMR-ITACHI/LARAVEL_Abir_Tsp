@@ -25,9 +25,12 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-        $("#total").click(function() {
+
+        //aUTO mULTIPLE
+    
+        $("#quantity").change(function() {
             /*var quantity = document.getElementById("quantity").value;*/
-            var cost = $("#unitprice").val();
+            var cost = $("#unit_price").val();
             var qty = $("#quantity").val();
 
             var amt = (cost * qty);
@@ -36,6 +39,43 @@
             $("#subtotal").val(amt);
             $("#amt").val(amt);
 
+        });
+
+
+         //aUTO dROPDOWN sELECT
+
+                $('#payment_type').change(function(){
+            var PaymentType = $(this).val();
+
+            if(PaymentType =='sender payment'){
+                $('#payment_status').val('Paid');
+            }
+
+            else{
+                $('#payment_status').val('Unpaid');
+            }
+        });
+
+
+        //aUTO uNIT cOST sELECT
+            
+        $('#unit_id').change(function() {
+            var unitId = $(this).val();
+            
+            if (unitId) {
+                $.ajax({
+                    url: '{{ url("/get-cost") }}/'. unitId,
+                    method: 'GET',
+                    success: function(response) {
+                        $('#unit_price').val(response.cost !== null ? response.cost : 'No cost available');
+                    },
+                    error: function() {
+                        alert('Error fetching cost.');
+                    }
+                });
+            } else {
+                $('#unit_price').val(''); // Clear the cost field if no unit is selected
+            }
         });
 
     });
@@ -225,7 +265,7 @@
 
                                 <div class="col-lg-4 col-md-6 col-12 mb-3">
                                     <label>Unit Name</label>
-                                    <select name="unit_name" class="form-select select_unit_id">
+                                    <select name="unit_name" class="form-select select_unit_id" id="unit_id">
                                         <option value="">Select Unit</option>
                                         @foreach ($units as $unit)
                                         <option value="{{ $unit->id }}">{{ $unit->name }}</option>
@@ -238,7 +278,7 @@
 
                                 <div class="col-lg-2 col-md-6 col-12 mb-3">
                                     <label>Cost</label>
-                                    <input type="text" class="form-control get_cost_rate" id="unitprice" name="unit_price" placeholder="Cost">
+                                    <input type="text" class="form-control get_cost_rate" id="unit_price" name="unit_price" placeholder="Cost">
                                     @error('unit_price')
                                     <div class="alert alert-danger">{{$message}}</div>
                                     @enderror
@@ -295,20 +335,37 @@
                 <div class="card-header">
                     <h4 class="card-title">Payment Details</h4>
                 </div>
+
                 <div class="card-body">
                     <div class="row justify-content-end">
                         <div class="col-lg-3 mb-3">
                             <label>Payment Type</label>
-                            <select name="payment_type" class="form-select" id="select_payment_type">
+                            <select name="payment_type" class="form-select" id="payment_type">
                                 <option value="">Select Type</option>
-                                <option value="Sender Payment">Sender Payment</option>
-                                <option value="Receiver Payment">Receiver Payment</option>
+                                <option value="sender payment">Sender Payment</option>
+                                <option value="receiver payment">Receiver Payment</option>
                             </select>
                             @error('payment_type')
                             <div class="alert alert-danger">{{$message}}</div>
                             @enderror
 
                         </div>
+
+
+                        <div class="col-lg-3 mb-3">
+                            <label>Payment Status</label>
+                            <select name="payment_status" class="form-select" id="payment_status">
+                                <option value="">Select Type</option>
+                                <option value="Paid">Paid</option>
+                                <option value="Unpaid">Unpaid</option>
+                            </select>
+                            @error('Payment Status')
+                            <div class="alert alert-danger">{{$message}}</div>
+                            @enderror
+
+                        </div>
+
+                        
                         <div class="col-lg-3 mb-3">
                             <label>Payment Amount</label>
                             <input type="number" class="form-control" name="amt" id="amt" style="cursor: pointer;" placeholder="Payment amount" readonly>
@@ -335,10 +392,10 @@
 @endsection
 
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script>
     !window.jQuery && document.write(decodeURI('%3Cscript src="js/vendor/jquery-1.11.1.min.js"%3E%3C/script%3E'));
-</script>
+</script> -->
 
 @section('js')
 

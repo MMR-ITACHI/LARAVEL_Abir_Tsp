@@ -69,7 +69,7 @@
                        
                         <td>
                             
-                                <a href="" class="btn btn-info">View</a>
+                                <a href="{{route('invoice',$courier->id)}}" target="_blank" class="btn btn-info">Invoice</a>
                                 
                                <button type="submit" name="submit" class="btn btn-danger">Delete</button>
 

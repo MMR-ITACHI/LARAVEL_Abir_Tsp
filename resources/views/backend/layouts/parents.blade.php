@@ -11,7 +11,7 @@
     <meta name="robots" content="noindex, nofollow">
 
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="_token" content="{{csrf_token()}}">
+    <!-- <meta name="_token" content="{{csrf_token()}}"> -->
 
     <!-- Icons -->
     <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->

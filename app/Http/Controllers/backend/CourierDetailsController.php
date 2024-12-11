@@ -4,10 +4,12 @@ namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Branch;
+use App\Models\Cost;
 use App\Models\Courierdetail;
 use App\Models\Unit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class CourierDetailsController extends Controller
 {
@@ -17,10 +19,11 @@ class CourierDetailsController extends Controller
     public function index()
     {
 
-       
+        $employeeId = Auth::id(); 
+        $couriers = Courierdetail::OrderBy('id','desc')->where('sender_agent_id', $employeeId)->get();
 
-        $couriers = Courierdetail::all();
-        return view('backend.courierdetails.courier_list_index',compact('couriers','branches'));
+        
+        return view('backend.courierdetails.courier_list_index',compact('couriers'));
     }
 
     /**
@@ -41,7 +44,7 @@ class CourierDetailsController extends Controller
         $sender_agent_id = Auth::user()->id;
         $receiver_branch_id = Auth::user()->branch_id;
         $manager_id = Auth::user()->manager_id;
-        $tracking = time().'acer';
+        $tracking = time().'A';
 
 
         $cdetails =   new Courierdetail;
@@ -72,6 +75,7 @@ class CourierDetailsController extends Controller
         $cdetails->comment = $request->special_comment;
         $cdetails->grand_total = $request->subtotal;
         $cdetails->payment_type = $request->payment_type;
+        $cdetails->payment_status = $request->payment_status;
         $cdetails->payment_amount = $request->amt;
 
         $cdetails->save();
@@ -111,13 +115,30 @@ class CourierDetailsController extends Controller
         //
     }
 
-
-    public function codex()
+    public function Invoice($id)
     {
-        $managerId = Auth::id(); 
-         $cdetails = Courierdetail::where('manager_id', $managerId)->get();
-
-
-         return view('backend.courierdetails.codex',compact('cdetails'));
+        $records =Courierdetail::find($id);
+        return view('backend.courierdetails.invoice',compact('records'));
     }
+
+
+    //  public function updatepaymentstatus(Request $request)
+    //  {
+    //     $senderPayment = $request->input('sender_payment');
+    //      $paymentStatus = $request->input('payment_status');
+    //       // Update the payment status in your relevant table
+    //      DB::table('courierdetails')
+    //       ->where('payment_type', $senderPayment)
+    //        ->insert(['payment_status' => $paymentStatus]);
+    //         return response()->json(['success' => true]);
+
+    // return response()->json(['success' => true]);
+    //  }
+
+    public function getCost($unit_id) {
+         $cost = Cost::where('unit_id', $unit_id)->first();
+          if ($cost) { return response()->json(['cost' => $cost]); 
+                     } 
+                   return response()->json(['cost' => null]); }
+    
 }

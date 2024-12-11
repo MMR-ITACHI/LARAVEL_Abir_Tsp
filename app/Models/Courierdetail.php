@@ -10,7 +10,7 @@ class Courierdetail extends Model
     use HasFactory;
 
     public function branch(){
-        return $this->belongsTo(Branch::class);
+        return $this->belongsTo(Branch::class,'receiver_branch_id');
     }
 
     public function employee(){

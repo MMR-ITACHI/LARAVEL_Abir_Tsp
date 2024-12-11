@@ -82,6 +82,17 @@ Route::middleware('auth:manager')->prefix('manager')->group( function () {
     Route::view('/dashboard','backend.manager1_dashboard')->name('manager.dashboard');
     // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::resource('/staff', StaffController::class);
+
+    Route::get('/courierinfo', [ManagerController::class, 'courierInfo'])->name('courier.info');
+    Route::get('/courier/status/{id}',[ManagerController::class,'changeStatus'])->name('changeStatus');
+
+    Route::get('/ontheWay', [ManagerController::class, 'ontheWay'])->name('ontheWay.info');
+    Route::get('/ontheway/{id}',[ManagerController::class,'changeStatus1'])->name('changeStatus1');
+
+    Route::get('/outofDelivary', [ManagerController::class, 'outofDelivary'])->name('outofDelivary.info');
+   // Route::get('/outofDelivary/{id}',[ManagerController::class,'changeStatus2'])->name('changeStatus2');
+
+
     
 
 });
@@ -107,9 +118,13 @@ Route::middleware('auth:employee')->prefix('employee')->group( function () {
     Route::view('/dashboard','backend.employee1_dashboard');
     Route::resource('/courierdetails', CourierDetailsController::class);
     
-    Route::post('/cost-fetch/{id}', [CourierDetailsController::class, 'showCost']);
-    Route::get('/codex', [CourierDetailsController::class, 'codex']);
+    Route::get('/get-cost/{unit_id}', [CourierDetailsController::class, 'getCost'])->name('getCost');
+   // Route::post('/updatepaymentstatus', [CourierDetailsController::class, 'paymentStatus'])->name('updatePaymentStatus');
     
+   Route::get('/invoice/{id}',[CourierDetailsController::class, 'Invoice'])->name('invoice');
 
 });
+
+
+
 require __DIR__.'/auth.php';

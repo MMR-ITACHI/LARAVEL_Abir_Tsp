@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Branch;
+use App\Models\Courierdetail;
 use App\Models\Manager;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ManagerController extends Controller
 {
@@ -144,4 +146,84 @@ class ManagerController extends Controller
         $manager->delete();
         return redirect()->route('manager.index')->with('msg','Successfully Deleted');
     }
+
+
+    public function courierInfo()
+    {
+        $managerId = Auth::id(); 
+        $status = 'Processing';
+         $cdetails = Courierdetail::OrderBy('id','desc')->where('manager_id', $managerId)
+                                   ->where('status', $status)
+                                    ->get();
+
+
+         return view('backend.courierdetails.courierinfo',compact('cdetails'));
+    }
+
+
+    public function changeStatus($id)
+    {
+       $record =Courierdetail::find($id);
+       $record->status =='Processing' ? $record->status = 'On the way': $record->status ='Processing';
+
+       $record->update();
+       return redirect()->back();
+
+
+
+    }
+
+
+    public function ontheWay()
+    {
+        $managerId = Auth::id(); 
+        $status = 'On the way';
+         $cdetails = Courierdetail::where('manager_id', $managerId)
+                                    ->where('status', $status)
+                                    ->get();
+
+
+         return view('backend.courierdetails.ontheWay',compact('cdetails'));
+    }
+
+
+
+    public function changeStatus1($id)
+    {
+       $record =Courierdetail::find($id);
+       $record->status =='On the way' ? $record->status = 'Out of Delivery': $record->status ='On the way';
+
+       $record->update();
+       return redirect()->back();
+
+
+
+    }
+
+
+    public function outofDelivary()
+    {
+        $managerId = Auth::id(); 
+        $status = 'Out of Delivery';
+         $cdetails = Courierdetail::where('manager_id', $managerId)
+                                    ->where('status', $status)
+                                    ->get();
+
+
+         return view('backend.courierdetails.outofdelivary',compact('cdetails'));
+    }
+
+
+
+    // public function changeStatus2($id)
+    // {
+    //    $record =Courierdetail::find($id);
+    //    $record->status =='Out of Delivery' ? $record->status = 'Delivered': $record->status ='Out of Delivery';
+
+    //    $record->update();
+    //    return redirect()->back();
+
+
+
+    // }
 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 06, 2024 at 10:08 PM
+-- Generation Time: Dec 11, 2024 at 07:12 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -69,8 +69,9 @@ CREATE TABLE `branches` (
 --
 
 INSERT INTO `branches` (`id`, `branch_name`, `branch_email`, `admin_id`, `number`, `address`, `status`, `photo`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Savar Courier Point', 'savar@gmail.com', 1, '01971324923', 'Savar', 'active', NULL, NULL, '2024-12-02 11:41:27', '2024-12-03 11:17:20'),
-(2, 'Dhaka Courier Point', 'dhakacourier@gmail.com', 1, '01638149944', 'Purana Paltan,Dhaka', 'active', 'images/20241206204048.jpg', NULL, '2024-12-06 14:40:48', '2024-12-06 14:40:48');
+(1, 'Savar Courier Point', 'savar@gmail.com', 1, '01971324922', '58/1,SOUTH RAJASHON\r\nSAVAR,DHAKA', 'active', 'images/20241207120930.jpg', NULL, '2024-12-07 06:09:30', '2024-12-07 06:09:30'),
+(2, 'Dhaka Courier Point', 'dhaka@gmail.com', 1, '01971324922', '58/1,SOUTH RAJASHON\r\nSAVAR,DHAKA', 'active', 'images/20241207121016.jpg', NULL, '2024-12-07 06:10:16', '2024-12-07 06:10:16'),
+(6, 'Raj Courier Service', 'raj@gmail.com', 1, '01638149944', '58/1,South Rajashon,Savar,Dhaka', 'active', 'images/20241207154844.jpg', NULL, '2024-12-07 09:48:44', '2024-12-07 09:48:44');
 
 -- --------------------------------------------------------
 
@@ -135,7 +136,7 @@ INSERT INTO `costs` (`id`, `unit_id`, `cost`, `status`, `remember_token`, `creat
 CREATE TABLE `courierdetails` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `sender_type` enum('Individual','Company') NOT NULL,
-  `company_name` varchar(50) NOT NULL,
+  `company_name` varchar(50) DEFAULT NULL,
   `sender_name` varchar(50) NOT NULL,
   `sender_email` varchar(50) NOT NULL,
   `sender_phone` varchar(15) NOT NULL,
@@ -144,16 +145,20 @@ CREATE TABLE `courierdetails` (
   `receiver_email` varchar(50) NOT NULL,
   `receiver_phone` varchar(50) NOT NULL,
   `receiver_address` varchar(50) NOT NULL,
-  `status` enum('Processing','On the way','Out of Delivery','Delivered') DEFAULT 'Processing',
+  `receiver_branch_id` int(11) NOT NULL,
+  `sender_agent_id` int(11) NOT NULL,
+  `manager_id` int(11) NOT NULL,
+  `status` enum('Processing','On the way','Out of Delivery','Delivered') NOT NULL DEFAULT 'Processing',
   `item_description` varchar(250) NOT NULL,
   `tracking_id` varchar(255) NOT NULL,
   `unit_name` varchar(255) NOT NULL,
   `cost` varchar(255) NOT NULL,
   `quantity` int(11) NOT NULL,
   `total_cost` int(11) NOT NULL,
-  `comment` varchar(50) NOT NULL,
+  `comment` varchar(50) DEFAULT NULL,
   `grand_total` int(11) NOT NULL,
   `payment_type` enum('Sender Payment','Receiver Payment') NOT NULL DEFAULT 'Sender Payment',
+  `payment_status` varchar(20) NOT NULL,
   `payment_amount` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -163,9 +168,17 @@ CREATE TABLE `courierdetails` (
 -- Dumping data for table `courierdetails`
 --
 
-INSERT INTO `courierdetails` (`id`, `sender_type`, `company_name`, `sender_name`, `sender_email`, `sender_phone`, `sender_address`, `receiver_name`, `receiver_email`, `receiver_phone`, `receiver_address`, `status`, `item_description`, `tracking_id`, `unit_name`, `cost`, `quantity`, `total_cost`, `comment`, `grand_total`, `payment_type`, `payment_amount`, `created_at`, `updated_at`) VALUES
-(1, 'Individual', 'yujbfy', 'MOSTAFIZUR RAHMAN', 'abirm6133@gmail.com', '01971324922', '58/1,SOUTH RAJASHON\r\nSAVAR,DHAKA', 'MD FAZLUL HAQUE', 'mostafizurrahmanabir4444@gmail.com', '01971324922', '58/1,SOUTH RAJASHON\r\nSAVAR,DHAKA', NULL, 'tygfdcx', 'P123vbjdnv', '6', '500', 1, 500, 'kjgtdilh', 0, 'Sender Payment', 500, '2024-12-06 13:58:13', '2024-12-06 13:58:13'),
-(2, 'Individual', 'yujbfy', 'MOSTAFIZUR RAHMAN', 'abirm6133@gmail.com', '01971324922', '58/1,SOUTH RAJASHON\r\nSAVAR,DHAKA', 'MD FAZLUL HAQUE', 'mostafizurrahmanabir4444@gmail.com', '01971324922', '58/1,SOUTH RAJASHON\r\nSAVAR,DHAKA', NULL, 'tygfdcx', 'P123vbjdnv', '6', '500', 1, 500, 'kjgtdilh', 0, 'Sender Payment', 500, '2024-12-06 14:00:45', '2024-12-06 14:00:45');
+INSERT INTO `courierdetails` (`id`, `sender_type`, `company_name`, `sender_name`, `sender_email`, `sender_phone`, `sender_address`, `receiver_name`, `receiver_email`, `receiver_phone`, `receiver_address`, `receiver_branch_id`, `sender_agent_id`, `manager_id`, `status`, `item_description`, `tracking_id`, `unit_name`, `cost`, `quantity`, `total_cost`, `comment`, `grand_total`, `payment_type`, `payment_status`, `payment_amount`, `created_at`, `updated_at`) VALUES
+(4, 'Company', 'fdkffdskvn', 'Akm Akash', 'akash@gmail.com', '01971324922', '85/1', 'Arafat Hossain', 'arafat@gmail.com', '01632145588', 'hdfdjjb', 6, 1, 5, 'Out of Delivery', 'gdscxvd', '1733674629HashiRama', '7', '10', 10, 100, 'hfscxvd', 100, 'Sender Payment', '', 100, '2024-12-08 10:17:09', '2024-12-11 11:32:00'),
+(5, 'Company', 'fdkffdskvn', 'Akm Akash', 'akash@gmail.com', '01971324922', '58/1', 'Arafat Hossain', 'arafat@gmail.com', '01632145588', '57/1', 2, 2, 4, 'Processing', 'hbvgf', '1733754794acer', '1', '500', 1, 500, 'tgfcvdr', 500, 'Sender Payment', 'unpaid', 500, '2024-12-09 08:33:14', '2024-12-09 08:33:14'),
+(6, 'Company', 'fdkffdskvn', 'Akm Akash', 'akash@gmail.com', '01971324922', 'lkjnbh', 'Arafat Hossain', 'arafat@gmail.com', '01632145588', 'jhb', 2, 2, 4, 'Processing', 'gfdxc', '1733754972acer', '7', '500', 1, 500, 'iuyhgf', 500, 'Receiver Payment', 'unpaid', 500, '2024-12-09 08:36:12', '2024-12-09 08:36:12'),
+(7, 'Individual', 'MD MAHABUB ALAM', 'MOSTAFIZUR RAHMAN', 'abirm6133@gmail.com', '01971324922', '58/1,SOUTH RAJASHON\r\nSAVAR,DHAKA', 'MOSTAFIZUR RAHMAN', 'mostafizurrahmanabir4444@gmail.com', '01971324922', '58/1,SOUTH RAJASHON\r\nSAVAR,DHAKA', 6, 1, 5, 'Out of Delivery', 'jhgvbc', '1733767064acer', '7', '5000', 11, 55000, 'jhuytg', 55000, 'Receiver Payment', 'unpaid', 55000, '2024-12-09 11:57:44', '2024-12-11 11:32:39'),
+(8, 'Company', 'MD MAHABUB ALAM', 'AHNAF RAHMAN', 'ahnaf@gmail.com', '01401581435', '58/1,SOUTH RAJASHON\r\nSAVAR,DHAKA', 'MOSTAFIZUR RAHMAN', 'mostafizurrahmanabir4444@gmail.com', '01401581435', '13/1-A, Shyamoli Road-02', 6, 1, 5, 'Out of Delivery', 'jhbg', '1733767149acer', '2', '500', 7, 3500, 'okiujh', 3500, 'Sender Payment', 'unpaid', 3500, '2024-12-09 11:59:09', '2024-12-11 12:07:24'),
+(9, 'Individual', 'MD MAHABUB ALAM', 'MOSTAFIZUR RAHMAN', 'abirm6133@gmail.com', '01971324922', '58/1,SOUTH RAJASHON\r\nSAVAR,DHAKA', 'MOSTAFIZUR RAHMAN', 'mostafizurrahmanabir4444@gmail.com', '01401581435', '13/1-A, Shyamoli Road-02', 6, 1, 5, 'Out of Delivery', 'jhnb', '1733767401acer', '2', '500', 2, 1000, 'hbvgf', 1000, 'Sender Payment', 'Paid', 1000, '2024-12-09 12:03:21', '2024-12-11 12:09:39'),
+(10, 'Individual', 'MD MAHABUB ALAM', 'MOSTAFIZUR RAHMAN', 'abirm6133@gmail.com', '01971324922', '58/1,SOUTH RAJASHON\r\nSAVAR,DHAKA', 'MOSTAFIZUR RAHMAN', 'mostafizurrahmanabir4444@gmail.com', '01401581435', '13/1-A, Shyamoli Road-02', 6, 1, 5, 'On the way', 'nbhgvf', '1733767464acer', '2', '500', 1, 500, 'hgvbft', 500, 'Sender Payment', 'Paid', 500, '2024-12-09 12:04:24', '2024-12-11 11:32:29'),
+(11, 'Individual', 'fdkffdskvn', 'Akm Akash', 'akash@gmail.com', '01971324922', '58/1', 'Arafat Hossain', 'arafat@gmail.com', '01632145588', '95/1', 2, 2, 4, 'Processing', 'nbvgfc', '1733935994acer', '1', '1000', 2, 2000, 'ytrdfcx', 2000, 'Sender Payment', 'Paid', 2000, '2024-12-11 10:53:14', '2024-12-11 10:53:14'),
+(12, 'Individual', NULL, 'Abir Ahmed', 'abir@gmail.com', '01971324514', 'South Rajashon,Savar,Dhaka', 'Md Sanbir Ahmed', 'sanbir@gmail.com', '01639874512', 'Gulisyhan,Dhaka', 1, 3, 2, 'On the way', 'hdfvcndjf', '1733936740acer', '1', '1200', 3, 3600, 'hhfvj', 3600, 'Sender Payment', 'Paid', 3600, '2024-12-11 11:05:40', '2024-12-11 11:05:55'),
+(13, 'Individual', NULL, 'Akm Akash', 'akash@gmail.com', '01971324514', 'jnbhgfv', 'Arafat Hossain', 'arafat@gmail.com', '01632145588', 'hjgjh', 1, 3, 2, 'Processing', 'bkjbjbjkj', '1733937337a', '2', '1200', 2, 2400, 'jkbjk', 2400, 'Sender Payment', 'Paid', 2400, '2024-12-11 11:15:37', '2024-12-11 11:15:37');
 
 -- --------------------------------------------------------
 
@@ -180,6 +193,7 @@ CREATE TABLE `employees` (
   `password` varchar(255) NOT NULL,
   `phone` varchar(255) NOT NULL,
   `branch_id` varchar(255) NOT NULL,
+  `manager_id` varchar(255) NOT NULL,
   `status` enum('active','inactive') NOT NULL DEFAULT 'inactive',
   `remember_token` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -190,8 +204,10 @@ CREATE TABLE `employees` (
 -- Dumping data for table `employees`
 --
 
-INSERT INTO `employees` (`id`, `name`, `email`, `password`, `phone`, `branch_id`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
-(4, 'Itachi Uchiha', 'employee1@gmail.com', '$2y$10$a5e2hKbDcV6tw/5R2FYOmejstMTTlEWkCzYvOVKIIXrTf9J5HifDW', '01236542155', '1', 'active', NULL, '2024-12-04 09:10:04', '2024-12-04 09:10:04');
+INSERT INTO `employees` (`id`, `name`, `email`, `password`, `phone`, `branch_id`, `manager_id`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'staff4', 'staff4@gmail.com', '$2y$10$y4.I9ck/9SN7SVxydcv7ZO2jQcbMXjR3hIkyqyJBmRfDJP/ibQ/RS', '01736815328', '6', '5', 'active', NULL, '2024-12-07 10:57:38', '2024-12-07 10:57:38'),
+(2, 'staff5', 'staff5@gmail.com', '$2y$10$vmB0AlfCVTy/23qArbDhp.xIAZvhe7MOpEPvvDNu9P8p0KqJd5IY2', '01638149960', '2', '4', 'active', NULL, '2024-12-07 11:51:04', '2024-12-07 11:51:04'),
+(3, 'staff6', 'staff6@gmail.com', '$2y$10$cdKNIVBOEdvrMccRVKJ/1uZXmyyEGgNRhoampVYtcFPNsGrYwZ.I6', '01736815328', '1', '2', 'active', NULL, '2024-12-07 11:53:20', '2024-12-07 11:53:20');
 
 -- --------------------------------------------------------
 
@@ -234,8 +250,9 @@ CREATE TABLE `managers` (
 --
 
 INSERT INTO `managers` (`id`, `name`, `email`, `password`, `branch_id`, `number`, `status`, `photo`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'M.M.R Shisui', 'manager@gmail.com', '$2y$10$V6ihpTP3qumNtf4D2op3cuZk753Ou8LJiM3YnbhL.dA8xJm0y.SKO', 1, '01971324922', 'active', 'images/20241206204324.jpg', NULL, '2024-12-02 11:41:27', '2024-12-06 14:43:24'),
-(2, 'Minato Namikaze', 'manager1@gmail.com', '$2y$10$GxMbyBfQNs4UTw7ZmYk.fOqyhUUdvhi6TeEdpp/4hqKHhyS6ID48S', 2, '01736815328', 'active', 'images/20241206204302.jpg', NULL, '2024-12-06 14:42:33', '2024-12-06 14:43:02');
+(2, 'Minato Namikaze', 'manager1@gmail.com', '$2y$10$GxMbyBfQNs4UTw7ZmYk.fOqyhUUdvhi6TeEdpp/4hqKHhyS6ID48S', 1, '01736815328', 'active', 'images/20241206204302.jpg', NULL, '2024-12-06 14:42:33', '2024-12-06 14:43:02'),
+(4, 'MD FAZLUL HAQUE', 'manager2@gmail.com', '$2y$10$RL9XNrvZPaiPnJPCuXG5t.KdJzXawRpoceXQ7AmcpDlObzrFLYs2u', 2, '01971324944', 'active', 'images/20241207121242.jpg', NULL, '2024-12-07 06:12:44', '2024-12-07 06:12:44'),
+(5, 'Hashirama', 'manager3@gmail.com', '$2y$10$mGK1V8W0PudUqUkJpXF9muR7lTWTY.J8JXFTaT9k51K7IrYeMbV3y', 6, '01638149960', 'active', 'images/20241207155318.jpg', NULL, '2024-12-07 09:53:18', '2024-12-07 09:53:18');
 
 -- --------------------------------------------------------
 
@@ -277,7 +294,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (132, '2024_12_04_154746_create_courierdetails_table', 15),
 (133, '2024_12_06_175647_create_courierdetails_table', 16),
 (134, '2024_12_06_194207_create_courierdetails_table', 17),
-(135, '2024_12_06_195641_create_courierdetails_table', 18);
+(135, '2024_12_06_195641_create_courierdetails_table', 18),
+(136, '2024_12_07_165034_create_employees_table', 19),
+(137, '2024_12_08_154255_create_courierdetails_table', 20),
+(138, '2024_12_08_155328_create_courierdetails_table', 21);
 
 -- --------------------------------------------------------
 
@@ -460,7 +480,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `branches`
 --
 ALTER TABLE `branches`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `companies`
@@ -478,13 +498,13 @@ ALTER TABLE `costs`
 -- AUTO_INCREMENT for table `courierdetails`
 --
 ALTER TABLE `courierdetails`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -496,13 +516,13 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `managers`
 --
 ALTER TABLE `managers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=136;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=139;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
