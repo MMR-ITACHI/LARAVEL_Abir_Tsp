@@ -64,19 +64,47 @@
             
             if (unitId) {
                 $.ajax({
-                    url: '{{ url("/get-cost") }}/'. unitId,
+                    url:'/employee/get-cost/'+unitId,
                     method: 'GET',
                     success: function(response) {
+                        //alert(response.cost['cost']);
                         $('#unit_price').val(response.cost !== null ? response.cost : 'No cost available');
                     },
                     error: function() {
-                        alert('Error fetching cost.');
+                       // alert('Error fetching cost.');
                     }
                 });
             } else {
                 $('#unit_price').val(''); // Clear the cost field if no unit is selected
             }
         });
+
+
+
+            //Company Field Show
+
+        $('#sender_type').change(function() {
+            var companyId = $(this).val();
+            
+            if (companyId =='Company') {
+                $.ajax({
+                    url:'{{ route("companyForm") }}',
+                    method: 'GET',
+                    success: function(response) {
+                         $('#company_name').html(response).show();
+                         },
+                          error: function() {
+                             alert('Error loading company field.');
+                             }
+                             });
+                            
+                            } 
+                            else {
+                                 $('#company_name').hide().html(''); // Hide and clear the field if not 'company'
+
+                         }
+
+                         });
 
     });
 </script>
@@ -128,14 +156,24 @@
 
 
 
-
-                    <div class="mb-3">
-                        <label>Company Name</label>
-                        <input type="text" class="form-control" name="company_name" id="sender_name" placeholder="Company name">
+                    <div class="form-control" id="company_name" name="company_name" style="display: none;">
+                         <!-- Company field will be loaded here -->
+                         <label class="control-label col-md-2" for="company_name">Company Name </label>
+                        
+                        </div>
+                    
+                       {{--
+                        <div class="mb-3">
+                          <label>Company Name</label>
+                          <input type="text" class="form-control" name="company_name" id="company_name" style="display: none;" placeholder="Company name">
                         @error('company_name')
                         <div class="alert alert-danger">{{$message}}</div>
                         @enderror
                     </div>
+                          
+                          
+                          --}}
+                        
 
 
 

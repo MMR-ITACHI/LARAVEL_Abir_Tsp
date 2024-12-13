@@ -136,9 +136,25 @@ class CourierDetailsController extends Controller
     //  }
 
     public function getCost($unit_id) {
-         $cost = Cost::where('unit_id', $unit_id)->first();
-          if ($cost) { return response()->json(['cost' => $cost]); 
+         $cost = Cost::where('unit_id', $unit_id)->get();
+//dd($cost);
+        foreach($cost as $cos){
+            $val = $cos->cost;
+        }
+          if ($val) { return response()->json(['cost' => $val]); 
                      } 
-                   return response()->json(['cost' => null]); }
+                   return response()->json(['cost' => null]); 
+                }
+
+
+
+
+
+                public function CompanyForm()
+    {
+        // You can also pass any additional data to the view if needed
+        return response()->json(['html' => view('backend.courierdetails.company_name')->render()]);
+        //return view('backend.courierdetails.company_name');
+    }
     
 }

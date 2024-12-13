@@ -119,7 +119,7 @@ Route::middleware('auth:employee')->prefix('employee')->group( function () {
     Route::resource('/courierdetails', CourierDetailsController::class);
     
     Route::get('/get-cost/{unit_id}', [CourierDetailsController::class, 'getCost'])->name('getCost');
-   // Route::post('/updatepaymentstatus', [CourierDetailsController::class, 'paymentStatus'])->name('updatePaymentStatus');
+    Route::get('/company-form', [CourierDetailsController::class, 'CompanyForm'])->name('companyForm');
     
    Route::get('/invoice/{id}',[CourierDetailsController::class, 'Invoice'])->name('invoice');
 
